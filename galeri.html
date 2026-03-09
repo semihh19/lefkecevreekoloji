@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri - Lefke Çevre ve Ekoloji Derneği</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --ana-renk: #003366;
+            --beyaz: #ffffff;
+            --metin: #555555;
+            --gri: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: var(--ana-renk);
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
+        }
+
+        .brand-text {
+            color: white;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-link-home {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 22px;
+            border-radius: 50px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link-home:hover {
+            background: white;
+            color: var(--ana-renk);
+        }
+
+        /* --- HERO SLIDER --- */
+        .hero-slider {
+            margin-top: 70px;
+            height: 60vh;
+            position: relative;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Ana Slider Butonları */
+        .main-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .main-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .main-prev {
+            left: 20px;
+        }
+
+        .main-next {
+            right: 20px;
+        }
+
+        /* --- GALERİ IZGARASI --- */
+        .gallery-section {
+            padding: 60px 5%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--ana-renk);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+        }
+
+        /* --- MİNİ SLIDER (KART İÇİ) --- */
+        .mini-slider-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .mini-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .mini-slide.active {
+            opacity: 1;
+        }
+
+        .mini-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mini-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 5;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mini-prev {
+            left: 15px;
+        }
+
+        .mini-next {
+            right: 15px;
+        }
+
+        .comment-section {
+            padding: 25px;
+        }
+
+        .comment-section h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--ana-renk);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .comment-section p {
+            font-size: 0.9rem;
+            color: var(--metin);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            background: var(--ana-renk);
+            color: white;
+            font-size: 0.8rem;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="tr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lefke Derneği - Master Navbar</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+            rel="stylesheet">
+
+        <style>
+            /* CSS SIFIRLAMA VE DEĞİŞKENLER */
+            :root {
+                --color-primary: #1e3a5f;
+                --color-dark: #0f172a;
+                --font-main: 'Inter', sans-serif;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: var(--font-main);
+                background-color: #f8fafc;
+            }
+
+            /* --- NAVBAR TASARIMI --- */
+            .navbar {
+                background: #ffffff;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .nav-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            /* Sol: Logo ve Hoşgeldin */
+            .nav-brand {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .logo {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--color-primary);
+                text-decoration: none;
+                letter-spacing: -0.5px;
+            }
+
+            .welcome-text {
+                font-size: 0.75rem;
+                color: #64748b;
+            }
+
+            /* Orta: Menü Linkleri */
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 5px;
+                /* Menü elemanları arası temel boşluk */
+                margin: 0;
+                padding: 0;
+            }
+
+            .nav-link {
+                text-decoration: none;
+                color: var(--color-dark);
+                font-weight: 500;
+                font-size: 0.95rem;
+                padding: 8px 15px;
+                transition: all 0.3s;
+            }
+
+            .nav-link:hover {
+                color: var(--color-primary);
+            }
+
+            /* --- NARİN DROPDOWN AYARLARI --- */
+            .nav-item.dropdown {
+                position: relative;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+                background: white;
+                min-width: 160px;
+                padding: 5px 0;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border: 1px solid #f0f0f0;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.2s ease;
+                list-style: none;
+            }
+
+            /* Mouse üzerine gelince kutu açılır */
+            .nav-item.dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%) translateY(5px);
+            }
+
+            /* SIKI LİSTE AYARI: Aradaki boşluğu öldüren kısım */
+            .dropdown-menu li {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100%;
+            }
+
+            .dropdown-menu li a {
+                display: block;
+                padding: 10px 15px;
+                font-size: 14px;
+                color: #444;
+                text-decoration: none;
+                transition: background 0.2s;
+                text-align: center;
+                border-radius: 4px;
+                margin: 0 5px;
+            }
+
+            .dropdown-menu li a:hover {
+                background-color: #f8fafc;
+                color: var(--color-primary);
+            }
+
+            .arrow {
+                font-size: 9px;
+                margin-left: 4px;
+                color: #bbb;
+            }
+
+            /* Sağ: Butonlar */
+            .nav-actions {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .btn {
+                padding: 8px 18px;
+                border-radius: 6px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: none;
+            }
+
+            .btn-outline {
+                background: transparent;
+                border: 1.5px solid var(--color-primary);
+                color: var(--color-primary);
+            }
+
+            .btn-primary {
+                background: var(--color-primary);
+                color: white;
+            }
+
+            .btn:hover {
+                opacity: 0.9;
+                transform: translateY(-1px);
+            }
+
+            /* Mobil Menü Gizleme (Desktop görünümü için) */
+            .mobile-menu-toggle {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .nav-menu {
+                    display: none;
+                }
+
+                .mobile-menu-toggle {
+                    display: block;
+                }
+            }
+
+            @media (max-width: 768px) {
+
+                /* Logo ve Menüyü kapsayan ana alan */
+                .navbar .container,
+                .nav-container {
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    text-align: center !important;
+                    padding: 10px 0 !important;
+                }
+
+                /* DERNEK İSMİ (LOGO) - Tek satır olması için */
+                .navbar-brand,
+                .logo-text {
+                    white-space: nowrap !important;
+                    /* Yazının alt satıra geçmesini önler */
+                    font-size: 1.2rem !important;
+                    /* Mobilde sığması için hafif küçültme */
+                    display: block !important;
+                    width: 100% !important;
+                    margin-bottom: 10px !important;
+                }
+
+                /* MENÜ LİNKLERİ - Hamburger olmadan yan yana dizilim */
+                .nav-menu {
+                    display: flex !important;
+                    flex-direction: row !important;
+                    /* Yan yana diz */
+                    justify-content: center !important;
+                    gap: 15px !important;
+                    /* Linkler arası boşluk */
+                    width: 100% !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+
+                .nav-link {
+                    font-size: 0.9rem !important;
+                    padding: 5px 0 !important;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
+                </div>
+
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">Keşfet <span class="arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cıttaslow.html">Cittaslow</a></li>
+                            <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
+                            <li><a href="galeri.html">Galeri</a></li>
+                            <li><a href="muflon.html">Muflon Heykeli</a></li>
+                            <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
+                            <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
+                            <li><a href="konaklar.html">Lefke Tarihi Konaklar</a></li>
+                            <li><a href="liman.html">Lefke Antik Liman</a></li>
+                            <li><a href="soli.html">Soli Antik Kenti</a></li>
+                            <li><a href="vuni.html">Vuni Sarayı</a></li>
+                            <li><a href="laü.html" style="font-weight: bold; color: #1e3a5f;">LAÜ</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
+
+                </ul>
+
+
+            </div>
+        </nav>
+
+
+        <script>
+            // Sağ tıklamayı engeller
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
+            document.onkeydown = function (e) {
+                if (e.keyCode == 123) { // F12
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
+                    return false;
+                }
+            };
+        </script>
+    </body>
+
+    </html>
+    <section class="hero-slider">
+        <button class="main-nav main-prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="main-nav main-next" onclick="moveSlide(1)">&#10095;</button>
+
+        <div class="slide active"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600">
+        </div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1501854140801-50d01674aa3e?q=80&w=1600"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1600"></div>
+    </section>
+
+    <section class="gallery-section">
+        <h2 class="section-title">Fotograf Galerimiz</h2>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Yeşil Lefke Vadileri</h4>
+                    <p>"Bahar aylarında vadi boyunca yaptığımız yürüyüşlerden en özel kareler."</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Antik Miras</h4>
+                    <p>"Lefke'nin binlerce yıllık tarihine ışık tutan antik madenler ve yapılar."</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Mavi ve Yeşil Buluşması</h4>
+                    <p>"Denizin bittiği yerde başlayan ormanların eşsiz gün batımı manzarası."</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1501854140801-50d01674aa3e?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Endemik Bitki Örtüsü</h4>
+                    <p>"Sadece bu bölgeye has bitkiler ve narenciye çiçeklerinin hikayesi."</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Dernek Çalışmaları</h4>
+                    <p>"Gönüllülerimizle gerçekleştirdiğimiz ağaçlandırma ve temizlik günleri."</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <div class="mini-slider-container">
+                    <button class="mini-nav mini-prev" onclick="moveMiniSlide(this, -1)">&#10094;</button>
+                    <div class="mini-slide active"><img
+                            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600"></div>
+                    <div class="mini-slide"><img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600"></div>
+                    <button class="mini-nav mini-next" onclick="moveMiniSlide(this, 1)">&#10095;</button>
+                </div>
+                <div class="comment-section">
+                    <h4>Cittaslow Lefke</h4>
+                    <p>"Sakin şehir unvanına sahip Lefke'nin sokaklarından huzur dolu kareler."</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column" id="footer-social">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2023?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                    target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+    <style>
+        /* FOOTER CSS BAŞLANGIÇ */
+        .footer {
+            background: #0f172a;
+            /* Görseldeki koyu lacivert tonu */
+            color: white;
+            padding: 60px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* FOOTER CSS BİTİŞ */
+    </style>
+
+    <script>
+        // Üst Ana Slider Kontrolü
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+        }
+
+        function moveSlide(n) {
+            showSlide(current + n);
+        }
+
+        // Otomatik Geçiş
+        setInterval(() => moveSlide(1), 5000);
+
+        // Kart İçi Mini Slider Fonksiyonu
+        function moveMiniSlide(btn, direction) {
+            const container = btn.parentElement;
+            const slides = container.querySelectorAll('.mini-slide');
+            let activeIndex = 0;
+            slides.forEach((s, i) => { if (s.classList.contains('active')) activeIndex = i; });
+            slides[activeIndex].classList.remove('active');
+            let nextIndex = (activeIndex + direction + slides.length) % slides.length;
+            slides[nextIndex].classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

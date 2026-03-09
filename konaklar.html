@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lefke Tarihi Konaklar | Kültürel Miras</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- KÖK DEĞİŞKENLER & TEMA --- */
+        :root {
+            --color-aqua: #007b83;
+            --color-aqua-dark: #005a61;
+            --color-aqua-light: #e5f2f3;
+            --color-nature: #2d5a27;
+            --color-sand: #f4f1ea;
+            --color-sand-dark: #e8e3d5;
+            --color-text: #334155;
+            --color-heading: #0f172a;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --footer-bg: #0f172a;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- GENEL SIFIRLAMA --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-sand);
+            color: var(--color-text);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-heading);
+            color: var(--color-heading);
+            font-weight: 700;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- YARDIMCI SINIFLAR --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--color-aqua);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-nature);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- HERO (KAPAK) BÖLÜMÜ --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)),
+                url('https://cittaslow.org/sites/default/files/styles/slider_image/public/content/cities/slider/lefke_cittaslow_north_cyprus_1.jpg?itok=yR_nB4bS') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: white;
+            animation: fadeInDown 1.2s ease-out;
+            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+            color: var(--color-aqua);
+        }
+
+        /* --- HİKAYE (GİRİŞ) BÖLÜMÜ --- */
+        .story-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .split-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-size: 2.8rem;
+            color: var(--color-aqua);
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #475569;
+        }
+
+        .story-text .highlight {
+            font-weight: 600;
+            color: var(--color-nature);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .image-wrapper {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .single-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .image-wrapper:hover .single-image {
+            transform: scale(1.05);
+        }
+
+        /* --- MİMARİ DETAYLAR (KARTLAR) --- */
+        .features-section {
+            padding: 100px 0;
+            background-color: var(--color-sand);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--color-aqua);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover::before {
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--color-aqua-light);
+            color: var(--color-aqua);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 25px auto;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--color-aqua);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--color-heading);
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        /* --- ÖNE ÇIKAN KONAK (SHOWCASE) --- */
+        .showcase-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .showcase-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .showcase-img-wrapper {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .showcase-img-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+            display: block;
+        }
+
+        .showcase-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .showcase-content h3 {
+            font-size: 2.2rem;
+            color: var(--color-aqua-dark);
+            margin-bottom: 20px;
+        }
+
+        .showcase-content p {
+            margin-bottom: 20px;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: var(--color-sand);
+            color: var(--color-nature);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- ANIMASYONLAR --- */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* --- RESPONSIVE TASARIM --- */
+        @media (max-width: 992px) {
+            .split-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .showcase-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* KULLANICI KODUNDAN GELEN FOOTER STİLLERİ AYNEN KORUNMUŞTUR */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 60px 20px;
+            font-family: 'Inter', sans-serif;
+            margin-top: 100px;
+        }
+
+        .footer .container-footer {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <style>
+        :root {
+            --color-primary: #1e3a5f;
+            --color-dark: #0f172a;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background: #ffffff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 15px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            min-width: 160px;
+            padding: 5px 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #f0f0f0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            list-style: none;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(5px);
+        }
+
+        .dropdown-menu li {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #444;
+            text-decoration: none;
+            transition: background 0.2s;
+            text-align: center;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: #f8fafc;
+            color: var(--color-primary);
+        }
+
+        .arrow {
+            font-size: 9px;
+            margin-left: 4px;
+            color: #bbb;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* --- MOBİL NAVİGASYON GÜNCELLEMESİ (HAMBURGERSIZ) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto !important;
+                /* İçeriğe göre yükseklik */
+                padding: 12px 0 !important;
+                position: fixed !important;
+                background: #ffffff !important;
+                display: block !important;
+                width: 100% !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+            }
+
+            .nav-container {
+                display: flex !important;
+                flex-direction: column !important;
+                /* Logo üstte, menü altta */
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 12px !important;
+                width: 100% !important;
+                padding: 0 10px !important;
+            }
+
+            .logo {
+                font-size: 0.95rem !important;
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+                margin: 0 !important;
+                line-height: 1.3 !important;
+                white-space: normal !important;
+            }
+
+            .nav-menu {
+                display: flex !important;
+                /* Mobilde gizlemeyi kaldır */
+                flex-direction: row !important;
+                justify-content: center !important;
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+                padding: 8px 0 0 0 !important;
+                margin: 0 !important;
+                border-top: 1px solid #f0f0f0 !important;
+                width: 100% !important;
+            }
+
+            .nav-link {
+                font-size: 0.75rem !important;
+                padding: 5px 8px !important;
+                background: #f8fafc;
+                border-radius: 4px;
+                color: var(--color-dark) !important;
+            }
+
+            /* Sayfa içeriğinin (Hero Görseli) navbar altında kalmaması için */
+            .hero {
+                margin-top: 110px !important;
+                /* Navbar'ın kapladığı alan kadar boşluk */
+                height: 60vh !important;
+                /* Mobilde görsel yüksekliğini biraz kısalttık */
+            }
+
+            /* Başlık boyutu ayarı */
+            .hero-content h1 {
+                font-size: 2rem !important;
+            }
+        }
+
+        /* Dropdown Mobilde Görünürlük Ayarı */
+        @media (max-width: 768px) {
+            .nav-item.dropdown:hover .dropdown-menu {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: translateX(-50%) translateY(5px) !important;
+                position: absolute !important;
+                z-index: 3000 !important;
+            }
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">Lefke Çevre ve Ekoloji Derneği</a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">Keşfet <span class="arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="cıttaslow.html">Cittaslow</a></li>
+                        <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
+                        <li><a href="galeri.html">Galeri</a></li>
+                        <li><a href="muflon.html">Muflon Heykeli</a></li>
+                        <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
+                        <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
+                        <li><a href="konaklar.html">Lefke Tarihi Konaklar</a></li>
+                        <li><a href="liman.html">Lefke Antik Liman</a></li>
+                        <li><a href="soli.html">Soli Antik Kenti</a></li>
+                        <li><a href="vuni.html">Vuni Sarayı</a></li>
+                        <li><a href="laü.html" style="font-weight: bold; color: #1e3a5f;">LAÜ</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#projeler" class="nav-link">Projeler</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function (e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        };
+    </script>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Lefke Tarihi Konaklar</h1>
+            <p>Geçmişin Zarif İzleri, Bugüne Uzanan Kökler</p>
+        </div>
+        <a href="#kesfet" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </header>
+
+    <section id="kesfet" class="story-section">
+        <div class="container">
+            <div class="split-content">
+                <div class="story-text">
+                    <h2>Taşın ve Ahşabın Eşsiz Dansı</h2>
+                    <p>Lefke'nin dar ve kıvrımlı sokaklarında yürürken başınızı kaldırdığınızda sizi selamlayan o
+                        görkemli yapılar, sadece birer ev değildir. Onlar, Osmanlı ve İngiliz mimarisinin Kıbrıs
+                        kültürüne ince ince nakşedildiği, nefes alan anıtlardır.</p>
+                    <p>Sarı kesme taşlar, işlemeli ahşap cumbalar, devasa kemerli kapılar ve gökyüzüne açılan geniş iç
+                        avlular... Her bir detay, Lefke'nin aristokrat geçmişini ve misafirperver ruhunu fısıldar.</p>
+                    <p class="highlight">"Bu konaklar, kasabanın hafızasını duvarlarında saklayan, zamana meydan okuyan
+                        sessiz tanıklardır."</p>
+                </div>
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Lefke Tarihi Konak Detay" class="single-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mimari Kimlik</h2>
+                <p>Kıbrıs'ın iklimine ve sosyal yaşantısına kusursuzca uyum sağlayan karakteristik mimari özellikler.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-home"></i></div>
+                    <h3>Cumba Kültürü</h3>
+                    <p>Sokağa taşan ahşap kafesli cumbalar, mahremiyeti korurken estetik bir görünüm ve yaz aylarında
+                        serinletici bir gölge katar.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Avlu Yaşamı</h3>
+                    <p>Dışarıya kapalı, içeriye dönük sosyal yaşamın kalbidir. Yasemin kokuları ve taş kuyularıyla
+                        ailenin huzur bulduğu gizli cennetlerdir.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-archway"></i></div>
+                    <h3>Eklektik Sentez</h3>
+                    <p>Osmanlı'nın geniş saçakları ve İngiliz sömürge döneminin görkemli kemerli giriş kapıları
+                        birleşerek benzersiz bir silüet oluşturmuştur.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cubes"></i></div>
+                    <h3>Sarı Kesme Taş</h3>
+                    <p>Bölgenin doğal yapısından elde edilen sarı taşlar, evlerin yazın serin kışın sıcak kalmasını
+                        sağlayan mükemmel bir doğal yalıtımdır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Öne Çıkan Mimari Yapı</h2>
+                <p>Lefke'nin kültürel mirasını günümüze taşıyan görkemli yapılardan zarif bir örnek.</p>
+            </div>
+
+            <div class="showcase-item">
+                <div class="showcase-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                        alt="Karakteristik Lefke Konağı">
+                </div>
+                <div class="showcase-content">
+                    <h3>Karakteristik Lefke Konağı</h3>
+                    <p>Genellikle iki katlı inşa edilen bu yapılar, alt katlarında kiler ve ambar olarak kullanılan
+                        kalın taş duvarlı odalara, üst katlarında ise ahşap işçiliğinin zirveye ulaştığı geniş yaşam
+                        alanlarına sahiptir.</p>
+                    <p>Hem Osmanlı'nın ahşap cumba geleneğini hem de İngiliz idaresi döneminde eklenen neo-klasik
+                        detayları, gösterişli sütunları ve kemerli taş oyma işçiliğini bir arada barındırarak dönemin
+                        mimari zenginliğini gözler önüne serer.</p>
+                    <div class="tag-list">
+                        <span class="tag">Sarı Kesme Taş</span>
+                        <span class="tag">Ahşap Cumba</span>
+                        <span class="tag">Kemerli Kapılar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Lefke Çevre ve Ekoloji Derneği</h3>
+                    <p>Lefke'nin güzelliklerini keşfedin.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Keşfet</h4>
+                        <ul>
+                            <li><a href="#lefke">Lefke</a></li>
+                            <li><a href="#magusa">Mağusa</a></li>
+                            <li><a href="#girne">Girne</a></li>
+                            <li><a href="#lefkosa">Lefkoşa</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column" id="footer-social">
+                        <h4>Sosyal Medya</h4>
+                        <ul>
+                            <li><a href="https://www.instagram.com/lced.2023?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                    target="_blank">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>İletişim</h4>
+                        <ul>
+                            <li><a href="#">Hakkımızda</a></li>
+                            <li><a href="#">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lefke Çevre ve Ekoloji Derneği. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
