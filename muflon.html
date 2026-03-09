@@ -315,14 +315,25 @@
         }
 
         .card-img {
-            height: 220px;
+            height: 250px;
+            /* Sabit bir yükseklik veriyoruz */
             width: 100%;
-            object-fit: cover;
+            /* Genişliği kutuya göre ayarla */
+            object-fit: contain;
+            /* Görselin tamamını göster, kırpma */
+            object-position: center;
+            /* Görseli kutunun tam ortasına yerleştir */
+            background-color: #f8f5f0;
+            /* Opsiyonel: Eğer görselin etrafında boşluk kalırsa arka plan rengi */
+            display: block;
         }
 
         .card-content {
             padding: 30px;
             flex-grow: 1;
+            display: flex;
+            /* İçeriği esnek yapmak için */
+            flex-direction: column;
         }
 
         .card-content h4 {
@@ -601,8 +612,7 @@
 
         <div class="info-grid">
             <div class="info-card reveal">
-                <img src="https://lefketurizm.org/wp-content/uploads/2021/09/foto2.jpg" class="card-img"
-                    alt="Endemik Yaşam">
+                <img src="muflon1 (1).jpg" class="card-img" alt="Endemik Yaşam">
                 <div class="card-content">
                     <h4>Endemik Yaşam</h4>
                     <p>Kıbrıs Muflonu, yerküre üzerinde yalnızca Kıbrıs adasına özgü (endemik) bir tür olup, bölgenin en
@@ -611,8 +621,7 @@
             </div>
 
             <div class="info-card reveal">
-                <img src="https://lefketurizm.org/wp-content/uploads/2021/09/foto2.jpg" class="card-img"
-                    alt="Sanatsal Dokunuş">
+                <img src="muflon4.jpg" class="card-img" alt="Sanatsal Dokunuş">
                 <div class="card-content">
                     <h4>Sanatsal İfade</h4>
                     <p>Usta sanatçıların ellerinde şekillenen bu heykel, yaban koyununun anatomik zarafetini ve asil
@@ -621,8 +630,7 @@
             </div>
 
             <div class="info-card reveal">
-                <img src="https://lefketurizm.org/wp-content/uploads/2021/09/foto2.jpg" class="card-img"
-                    alt="Lefke Dağları">
+                <img src="muflon3.jpg" class="card-img" alt="Lefke Dağları">
                 <div class="card-content">
                     <h4>Lefke'nin Kapısı</h4>
                     <p>İlçenin tam girişine konumlandırılmış olan heykel, gelen tüm ziyaretçilere doğaya saygıyı
@@ -631,8 +639,7 @@
             </div>
 
             <div class="info-card reveal">
-                <img src="https://lefketurizm.org/wp-content/uploads/2021/09/foto2.jpg" class="card-img"
-                    alt="Ekolojik Farkındalık">
+                <img src="muflon2.jpg" class="card-img" alt="Ekolojik Farkındalık">
                 <div class="card-content">
                     <h4>Ekolojik Farkındalık</h4>
                     <p>Lefke Çevre ve Ekoloji Derneği'nin de vizyonuyla örtüşen bu anıt, doğayı koruma bilincini genç
