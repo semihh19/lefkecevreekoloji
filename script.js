@@ -1,7 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
 
 const SUPABASE_URL = "https://tiznedphmqkybivnowzq.supabase.co"
-const SUPABASE_ANON_KEY = "sb_publishable_AkNyZKPVX86WGupmy3MIUQ_m9-DMdQf"
+const SUPABASE_ANON_KEY = "sb_publishable_AkNyZKPVX86WGupmy3MIUQ_m9-DMdQf" 
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 const logoutBtn = document.getElementById("logoutBtn")
@@ -772,3 +772,17 @@ if (haberAlani && prevBtn && nextBtn) {
         });
     };
 }
+// script.js dosyanızda Supabase auth dinleyicisini (onAuthStateChange) bulun veya ekleyin:
+supabase.auth.onAuthStateChange((event, session) => {
+    const welcomeText = document.getElementById("welcomeText");
+    const welcomeEmail = document.getElementById("welcomeEmail");
+
+    if (session) {
+        // Kullanıcı GİRİŞ YAPMIŞSA yazıyı göster ve mailini yaz
+        if(welcomeText) welcomeText.style.display = "block";
+        if(welcomeEmail) welcomeEmail.textContent = session.user.email;
+    } else {
+        // Kullanıcı GİRİŞ YAPMAMIŞSA (veya çıkış yaptıysa) yazıyı gizle
+        if(welcomeText) welcomeText.style.display = "none";
+    }
+});
