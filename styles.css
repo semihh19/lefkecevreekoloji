@@ -487,15 +487,7 @@ body {
 /* ============================================
    HABER ALANI
    ============================================ */
-#haber-alani {
-  display: flex;
-  flex-wrap: nowrap;   /* ALT SATIRA DÜŞMESİN */
-  overflow-x: auto;    /* YANA KAYDIRMA AKTİF */
-  scroll-behavior: smooth;
-  gap: 20px;
-  padding: 20px 10px;
-  cursor: grab;
-}
+
 
 /* Scroll bar gizle */
 #haber-alani::-webkit-scrollbar {
@@ -1816,9 +1808,7 @@ body.user-logged-in #userInfo {
 @media (min-width: 769px) {
     /* Yazının kapsayıcısını ve kendisini görünür yap */
     #welcomeText, .welcome-text {
-        display: block !important; /* Gizlemeyi zorla kaldırır */
-        visibility: visible !important;
-        opacity: 1 !important;
+      
         margin: 0 !important;
         white-space: nowrap !important;
         color: var(--color-primary) !important; /* Okunabilir renk */
