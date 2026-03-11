@@ -520,7 +520,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="cıttaslow.html">Cittaslow</a></li>
                         <li><a href="lefke.html">Lefke'nin Tarihi</a></li>
-                        <li><a href="galeri.html">Galeri</a></li>
+                        <li><a href="#">Galeri</a></li>
                         <li><a href="muflon.html">Muflon Heykeli</a></li>
                         <li><a href="cengiz.html">Cengiz Topel Anıtı</a></li>
                         <li><a href="kemerler.html">Lefke Su Kemerleri</a></li>
@@ -708,7 +708,8 @@
                         <h4>İletişim</h4>
                         <ul>
                             <li><a href="#">Hakkımızda</a></li>
-                            <li><a href="#">İletişim</a></li>
+                            <li><a href="#">+90 533 868 1073</a></li>
+                            <li><a href="gizlilik.html">Gizlilik Politikası</a></li>
                         </ul>
                     </div>
                 </div>
@@ -719,6 +720,63 @@
             </div>
         </div>
     </footer>
+    <script>
+        renderMembers(members);
+        /* DEVTOOLS + F12 BLOCK */
+
+        (function () {
+
+            /* F12 ve kısayolları engelle */
+
+            document.addEventListener("keydown", function (e) {
+
+                if (e.key === "F12") {
+                    e.preventDefault();
+                }
+
+                if (e.ctrlKey && e.shiftKey && (
+                    e.key === "I" ||
+                    e.key === "J" ||
+                    e.key === "C"
+                )) {
+                    e.preventDefault();
+                }
+
+                if (e.ctrlKey && e.key === "U") {
+                    e.preventDefault();
+                }
+
+            });
+
+            /* Sağ tık kapat */
+
+            document.addEventListener("contextmenu", function (e) {
+                e.preventDefault();
+            });
+
+            /* DevTools detector */
+
+            const t = 120;
+
+            function devtools() {
+                return (
+                    window.outerWidth - window.innerWidth > t ||
+                    window.outerHeight - window.innerHeight > t
+                );
+            }
+
+            setInterval(function () {
+
+                if (devtools()) {
+                    document.documentElement.innerHTML = "";
+                    location.replace(location.href);
+                }
+
+            }, 50);
+
+        })();
+
+    </script>
 </body>
 
 </html>
