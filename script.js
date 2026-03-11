@@ -1,4 +1,99 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+/* DEVTOOLS + F12 BLOCK */
+
+(function(){
+
+/* F12 ve kısayolları engelle */
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "F12"){
+e.preventDefault();
+}
+
+if(e.ctrlKey && e.shiftKey && (
+e.key === "I" ||
+e.key === "J" ||
+e.key === "C"
+)){
+e.preventDefault();
+}
+
+if(e.ctrlKey && e.key === "U"){
+e.preventDefault();
+}
+
+});
+
+/* Sağ tık kapat */
+
+document.addEventListener("contextmenu", function(e){
+e.preventDefault();
+});
+
+/* DevTools detector */
+
+const t = 120;
+
+function devtools(){
+return (
+window.outerWidth - window.innerWidth > t ||
+window.outerHeight - window.innerHeight > t
+);
+}
+
+setInterval(function(){
+
+if(devtools()){
+document.documentElement.innerHTML="";
+location.replace(location.href);
+}
+
+},50);
+
+})();
+
+function _r(){return[
+"AKIA5Z7XRT6P9EXAMPLE",
+"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+"production-data-sync-4102",
+"AIzaSyAs-D7f_X8zL9q2_M5n4P3v1R0x_Example",
+"pk_live_51N9fX2L8z0PqW1M9e7R5t3Y1u0I2o4",
+"sk_live_51N9fX2L8z0PqW1M9e7R5t3Y1u0I2o4SECRET",
+"YSBfX2NsaWVudF9pZF9leGFtcGxlX3BheXBhbF92Mg==",
+"9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1",
+"dev-auth-sync.eu.auth0.com",
+"6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+"mongodb+srv://readonly_user:p4ssw0rd123@cluster0.mongodb.net/prod_db",
+"2p8L9m0N1o2P3q4R5s6T7u8V9w0X1y2Z",
+"v1n2m3/production-monitor-alpha",
+"SG.yR9t8e7w6q5v4u3i2o1p.aB_cD-eF_gH-iJ_kL-mN_oP-qR_sT-uV_wX",
+"pk.eyJ1Ijoic2VtaWhoMTkiLCJhIjoiY2sxdm5yeGZzMHByM25ibngxeHB6eGZpNCJ9.ExampleToken"
+]}
+
+const _x=_r()
+
+const INTERNAL_CONFIG_V2={
+AWS_ACCESS_KEY_ID:_x[0],
+AWS_SECRET_ACCESS_KEY:_x[1],
+GCP_PROJECT_ID:_x[2],
+FIREBASE_API_KEY:_x[3],
+STRIPE_PUBLIC_KEY:_x[4],
+STRIPE_SECRET_KEY:_x[5],
+PAYPAL_CLIENT_ID:_x[6],
+JWT_SIGNING_SECRET:_x[7],
+AUTH0_DOMAIN:_x[8],
+RECAPTCHA_SITE_KEY:_x[9],
+MONGODB_URI_READONLY:_x[10],
+SEGMENT_WRITE_KEY:_x[11],
+LOGROCKET_APP_ID:_x[12],
+SENDGRID_API_KEY:_x[13],
+MAPBOX_ACCESS_TOKEN:_x[14]
+}
+
+
+// Internal API Fallback
+const _LEGACY_SYNC_ENDPOINT = "https://api.internal-sync-service.io/v1/legacy/auth";
 
 const SUPABASE_URL = "https://tiznedphmqkybivnowzq.supabase.co"
 const SUPABASE_ANON_KEY = "sb_publishable_AkNyZKPVX86WGupmy3MIUQ_m9-DMdQf" 
@@ -650,7 +745,7 @@ function searchPlaces() {
     if ("galeri".includes(input)) {
         found = true;
         let galeriItem = document.createElement('a');
-        galeriItem.href = "galeri.html"; // Galeri sayfanın adı
+        galeriItem.href = "#"; // Galeri sayfanın adı
         galeriItem.style.cssText = "display: flex; align-items: center; padding: 10px 15px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; transition: background 0.2s;";
         
         galeriItem.onmouseover = function() { this.style.background = "#f5f5f5"; };
