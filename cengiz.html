@@ -781,60 +781,68 @@
             }
         });
     </script>
-    <script>
-        (function () {
+   <script>
+/* FAST DEVTOOLS + F12 BLOCK */
 
-            /* F12 ve kısayolları engelle */
+(function(){
 
-            document.addEventListener("keydown", function (e) {
+/* KEY BLOCK */
 
-                if (e.key === "F12") {
-                    e.preventDefault();
-                }
+document.addEventListener("keydown", function(e){
 
-                if (e.ctrlKey && e.shiftKey && (
-                    e.key === "I" ||
-                    e.key === "J" ||
-                    e.key === "C"
-                )) {
-                    e.preventDefault();
-                }
+if(e.key === "F12"){
+e.preventDefault();
+location.reload();
+}
 
-                if (e.ctrlKey && e.key === "U") {
-                    e.preventDefault();
-                }
+if(e.ctrlKey && e.shiftKey && (
+e.key === "I" ||
+e.key === "J" ||
+e.key === "C"
+)){
+e.preventDefault();
+location.reload();
+}
 
-            });
+if(e.ctrlKey && e.key === "U"){
+e.preventDefault();
+location.reload();
+}
 
-            /* Sağ tık kapat */
+});
 
-            document.addEventListener("contextmenu", function (e) {
-                e.preventDefault();
-            });
+/* RIGHT CLICK BLOCK */
 
-            /* DevTools detector */
+document.addEventListener("contextmenu", function(e){
+e.preventDefault();
+});
 
-            const t = 120;
+/* DEVTOOLS DETECTOR */
 
-            function devtools() {
-                return (
-                    window.outerWidth - window.innerWidth > t ||
-                    window.outerHeight - window.innerHeight > t
-                );
-            }
+const t = 100;
 
-            setInterval(function () {
+function devtools(){
+return (
+window.outerWidth - window.innerWidth > t ||
+window.outerHeight - window.innerHeight > t
+);
+}
 
-                if (devtools()) {
-                    document.documentElement.innerHTML = "";
-                    location.replace(location.href);
-                }
+/* ULTRA FAST CHECK */
 
-            }, 50);
+setInterval(function(){
 
-        })();
+if(devtools()){
+document.body.innerHTML="";
+location.reload();
+}
 
-    </script>
+},10);
+
+})();
+</script>
+
 </body>
 
 </html>
+
