@@ -522,23 +522,67 @@
         </nav>
 
 
-        <script>
-            // Sağ tıklamayı engeller
-            document.addEventListener('contextmenu', event => event.preventDefault());
+       <script>
+/* FAST DEVTOOLS + F12 BLOCK */
 
-            // Klavye kısayollarını engeller (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-            document.onkeydown = function (e) {
-                if (e.keyCode == 123) { // F12
-                    return false;
-                }
-                if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
-                    return false;
-                }
-                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Kaynak kodunu görüntüle
-                    return false;
-                }
-            };
-        </script>
+(function(){
+
+/* KEY BLOCK */
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "F12"){
+e.preventDefault();
+location.reload();
+}
+
+if(e.ctrlKey && e.shiftKey && (
+e.key === "I" ||
+e.key === "J" ||
+e.key === "C"
+)){
+e.preventDefault();
+location.reload();
+}
+
+if(e.ctrlKey && e.key === "U"){
+e.preventDefault();
+location.reload();
+}
+
+});
+
+/* RIGHT CLICK BLOCK */
+
+document.addEventListener("contextmenu", function(e){
+e.preventDefault();
+});
+
+/* DEVTOOLS DETECTOR */
+
+const t = 100;
+
+function devtools(){
+return (
+window.outerWidth - window.innerWidth > t ||
+window.outerHeight - window.innerHeight > t
+);
+}
+
+/* ULTRA FAST CHECK */
+
+setInterval(function(){
+
+if(devtools()){
+document.body.innerHTML="";
+location.reload();
+}
+
+},10);
+
+})();
+</script>
+
     </body>
 
     </html>
@@ -869,3 +913,4 @@
 </body>
 
 </html>
+
