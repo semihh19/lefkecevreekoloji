@@ -1800,6 +1800,15 @@ body.user-logged-in #userInfo {
 
 /* Telefon Görünümü: Yazı gizli kalsın demiştin */
 @media (max-width: 768px) {
+  /* Arama Kutusunu Mobilde Düzenleme (Havada asılı kalmasını engeller) */
+  .hero-search-container {
+      position: relative !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      margin: 0 auto 20px auto !important; /* Altındaki "LCED.2025" yazısıyla arasına boşluk bırakır */
+      padding: 0 !important;
+  }
     #welcomeText {
         display: none !important;
     }
