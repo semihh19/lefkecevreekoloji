@@ -617,7 +617,7 @@ body {
 .slider-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  
   width: 48px;
   height: 48px;
   background: rgba(255, 255, 255, 0.9);
@@ -1871,3 +1871,4 @@ body.user-logged-in #userInfo {
     background: var(--color-primary);
     border-radius: 10px;
 }
+
