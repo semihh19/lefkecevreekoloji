@@ -2,18 +2,15 @@
 <html lang="tr">
 
 <head>
- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Lefke Avrupa Üniversitesi | Global Vizyon - Lefke Çevre ve Ekoloji Derneği</title>
-    
-    <meta name="description" content="Lefke Avrupa Üniversitesi'nin bölgeye kattığı global vizyon ve Lefke Çevre ve Ekoloji Derneği ile olan iş birliği projelerimiz.">
-    
-    <link rel="canonical" href="https://www.lefkecevreekoloji.org/lau.html" />
-    
+    <title>Lefke Avrupa Üniversitesi | Global Vizyon</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -462,6 +459,38 @@
             text-transform: uppercase;
         }
 
+        .university-banner-section {
+            width: 100%;
+            background-color: orange;
+            /* Bannerın arka plan rengiyle uyumlu koyu lacivert */
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-container {
+            width: 98%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .full-banner {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            /* Hafif yumuşatılmış köşeler */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobil uyumluluk için */
+        @media (max-width: 768px) {
+            .university-banner-section {
+                padding: 10px 0;
+            }
+        }
+
         /* =========================================
             FOOTER (İSTEDİĞİN ORİJİNAL YAPI)
             ========================================= */
@@ -818,7 +847,11 @@
             <span>% Mavi & Yeşil</span>
         </div>
     </section>
-
+    <section class="university-banner-section">
+        <div class="banner-container">
+            <img src="dernek_webbannerr.jpg" alt="Lefke Avrupa Üniversitesi Banner" class="full-banner">
+        </div>
+    </section>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -924,69 +957,7 @@
             });
         });
     </script>
-   <script>
-/* FAST DEVTOOLS + F12 BLOCK */
-
-(function(){
-
-/* KEY BLOCK */
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "F12"){
-e.preventDefault();
-location.reload();
-}
-
-if(e.ctrlKey && e.shiftKey && (
-e.key === "I" ||
-e.key === "J" ||
-e.key === "C"
-)){
-e.preventDefault();
-location.reload();
-}
-
-if(e.ctrlKey && e.key === "U"){
-e.preventDefault();
-location.reload();
-}
-
-});
-
-/* RIGHT CLICK BLOCK */
-
-document.addEventListener("contextmenu", function(e){
-e.preventDefault();
-});
-
-/* DEVTOOLS DETECTOR */
-
-const t = 100;
-
-function devtools(){
-return (
-window.outerWidth - window.innerWidth > t ||
-window.outerHeight - window.innerHeight > t
-);
-}
-
-/* ULTRA FAST CHECK */
-
-setInterval(function(){
-
-if(devtools()){
-document.body.innerHTML="";
-location.reload();
-}
-
-},10);
-
-})();
-</script>
 
 </body>
 
 </html>
-
-
