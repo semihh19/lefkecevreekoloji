@@ -785,66 +785,7 @@
             }
         });
     </script>
-   <script>
-/* FAST DEVTOOLS + F12 BLOCK */
-
-(function(){
-
-/* KEY BLOCK */
-
-document.addEventListener("keydown", function(e){
-
-if(e.key === "F12"){
-e.preventDefault();
-location.reload();
-}
-
-if(e.ctrlKey && e.shiftKey && (
-e.key === "I" ||
-e.key === "J" ||
-e.key === "C"
-)){
-e.preventDefault();
-location.reload();
-}
-
-if(e.ctrlKey && e.key === "U"){
-e.preventDefault();
-location.reload();
-}
-
-});
-
-/* RIGHT CLICK BLOCK */
-
-document.addEventListener("contextmenu", function(e){
-e.preventDefault();
-});
-
-/* DEVTOOLS DETECTOR */
-
-const t = 100;
-
-function devtools(){
-return (
-window.outerWidth - window.innerWidth > t ||
-window.outerHeight - window.innerHeight > t
-);
-}
-
-/* ULTRA FAST CHECK */
-
-setInterval(function(){
-
-if(devtools()){
-document.body.innerHTML="";
-location.reload();
-}
-
-},10);
-
-})();
-</script>
+ 
 
 </body>
 
