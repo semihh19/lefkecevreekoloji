@@ -1992,3 +1992,50 @@ body.user-logged-in #userInfo {
         flex: 0 0 280px; /* Mobilde alt kartları biraz daralt */
     }
 }
+/* Mobil Ekranlar İçin (Telefonlar) */
+@media (max-width: 768px) {
+    .featured-news-container {
+        padding: 0 15px; /* Kenar boşluklarını daralt */
+        margin-bottom: 30px;
+    }
+
+    .featured-news-card {
+        flex-direction: column; /* Resmi üste, yazıyı alta al */
+        max-height: none; /* Yükseklik sınırını kaldır */
+    }
+
+    .featured-img-container {
+        max-width: 100%; /* Resmi tam genişlik yap */
+        width: 100%;
+        height: 220px; /* Mobilde resim çok yer kaplamasın */
+    }
+
+    .featured-news-content {
+        padding: 20px; /* İç boşluğu mobilde biraz azalt */
+        align-items: flex-start;
+    }
+
+    .news-title {
+        font-size: 1.4rem; /* Başlığı mobilde biraz küçült */
+        line-height: 1.3;
+        margin-bottom: 10px;
+    }
+
+    .news-excerpt {
+        font-size: 0.95rem; /* Özet metni mobilde daha okunaklı yap */
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .news-date {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    /* Modal (Pop-up) kısmının mobilde düzgün görünmesi için ek ayar */
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+}
