@@ -617,7 +617,7 @@ body {
 .slider-btn {
   position: absolute;
   top: 50%;
-  
+ 
   width: 48px;
   height: 48px;
   background: rgba(255, 255, 255, 0.9);
@@ -1871,4 +1871,124 @@ body.user-logged-in #userInfo {
     background: var(--color-primary);
     border-radius: 10px;
 }
+/* ==============================================================
+   ÖNE ÇIKAN BÜYÜK HABER (MANUEL ALAN) TASARIMI
+   ============================================================== */
+.featured-news-container {
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
 
+.featured-news-card {
+    display: flex;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.featured-img-container {
+    flex: 1;
+    min-width: 40%;
+    max-width: 50%;
+}
+
+.featured-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.featured-news-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.news-date {
+    background-color: #f0f7f4; /* Doğaya uygun hafif yeşil ton */
+    color: #2c7a7b;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.news-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #1a202c;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.news-excerpt {
+    font-family: 'Inter', sans-serif;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+/* ==============================================================
+   ALTTAN GELEN GOOGLE SHEETS / URL HABERLERİNİ DÜZENLEME
+   ============================================================== */
+#haber-alani {
+    display: flex;
+    gap: 20px;
+    padding: 15px 5px;
+    align-items: stretch; /* Kartların yüksekliğini eşitlemeye çalışır */
+}
+
+/* İçine gelen Facebook/Instagram embed iframe'lerini standardize et */
+#haber-alani > div,
+#haber-alani iframe {
+    flex: 0 0 320px; /* Genişliği sabitle */
+    min-height: 480px !important; /* Yükseklikleri eşitlemek için zorla */
+    max-height: 480px !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    background: #fff;
+    border: none !important;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* ==============================================================
+   MOBİL UYUM (TELEFON EKRANLARI İÇİN)
+   ============================================================== */
+@media (max-width: 768px) {
+    .featured-news-card {
+        flex-direction: column; /* Mobilde resmi üste, yazıyı alta al */
+    }
+    
+    .featured-img-container {
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .featured-news-content {
+        padding: 25px;
+    }
+    
+    .news-title {
+        font-size: 1.4rem;
+    }
+    
+    #haber-alani > div,
+    #haber-alani iframe {
+        flex: 0 0 280px; /* Mobilde alt kartları biraz daralt */
+    }
+}
