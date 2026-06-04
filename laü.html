@@ -461,27 +461,24 @@
 
         .university-banner-section {
             width: 100%;
-            background-color: orange;
-            /* Bannerın arka plan rengiyle uyumlu koyu lacivert */
-            padding: 3px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .banner-container {
-            width: 99%;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .full-banner {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 5px;
-            /* Hafif yumuşatılmış köşeler */
+            height: 150px;
+            background-image: url('dernek_webbannerr.jpg');
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+            background-attachment: scroll;
+            animation: bannerScroll 30s linear infinite;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Şerit halinde kaydırma animasyonu */
+        @keyframes bannerScroll {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 1600px 0;
+            }
         }
 
         /* Mobil uyumluluk için */
@@ -847,11 +844,7 @@
             <span>% Mavi & Yeşil</span>
         </div>
     </section>
-    <section class="university-banner-section">
-        <div class="banner-container">
-            <img src="dernek_webbannerr.jpg" alt="Lefke Avrupa Üniversitesi Banner" class="full-banner">
-        </div>
-    </section>
+    <section class="university-banner-section" alt="Lefke Avrupa Üniversitesi Banner"></section>
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
