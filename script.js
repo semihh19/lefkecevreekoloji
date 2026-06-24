@@ -134,7 +134,10 @@ feedbackForm.addEventListener("submit", async (e) => {
 // Modül hatasını önlemek için (Burası çok önemli)
 window.searchPlaces = searchPlaces;
 
-window.addEventListener('load', haberCek);
+window.addEventListener('load', () => {
+  haberCek();
+  loadHomepageFeaturedNews();
+});
 window.addEventListener("scroll", updateActiveNavLink)
 // Mobile Menu Toggle - GÜNCELLENMİŞ
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
@@ -605,6 +608,55 @@ if (logoutBtn) {
     showToast("👋 Çıkış yapıldı")
   }
 }
+
+async function loadHomepageFeaturedNews() {
+    const spreadsheetId = "19so6Ibxxctln8kGnr_T2S33Y0WTUzJHjhJL2TmgP99c";
+    const sheetName = "Sayfa1";
+    const url = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+    const imageEl = document.getElementById("homeFeaturedNewsImage");
+    const dateEl = document.getElementById("homeFeaturedNewsDate");
+    const titleEl = document.getElementById("homeFeaturedNewsTitle");
+    const excerptEl = document.getElementById("homeFeaturedNewsExcerpt");
+    const cardEl = document.getElementById("homeFeaturedNewsCard");
+
+    if (!imageEl || !dateEl || !titleEl || !excerptEl || !cardEl) return;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.text();
+        const jsonData = JSON.parse(data.substring(47, data.length - 2));
+        const rows = jsonData.table.rows || [];
+
+        const newsList = rows
+            .map((row) => {
+                const c = row.c || [];
+                return {
+                    baslik: c[0] ? c[0].v : "",
+                    ozet: c[1] ? c[1].v : "",
+                    tarih: c[2] ? c[2].v : "",
+                    resim: c[3] ? c[3].v : ""
+                };
+            })
+            .filter((haber) => haber.baslik);
+
+        if (!newsList.length) return;
+
+        const latestNews = newsList[newsList.length - 1];
+
+        imageEl.src = latestNews.resim || "camlıkoy.jpeg";
+        imageEl.alt = latestNews.baslik;
+        dateEl.textContent = latestNews.tarih || "Son haber";
+        titleEl.textContent = latestNews.baslik;
+        excerptEl.textContent = latestNews.ozet || "Haber detayı için haberler sayfasını ziyaret edin.";
+        cardEl.setAttribute("data-news-title", latestNews.baslik);
+    } catch (e) {
+        console.error("Ana sayfa haberi yüklenemedi:", e);
+        titleEl.textContent = "Haber yüklenemedi";
+        excerptEl.textContent = "Haberler sayfasından son durumu kontrol edebilirsiniz.";
+    }
+}
+
 async function haberCek() {
     const tabloID = "10K9Hn0zvmILaz-HOunQAfiO1H3OHcqzYWN5Gn6utcpI";
     const url = `https://docs.google.com/spreadsheets/d/${tabloID}/gviz/tq?tqx=out:csv`;
