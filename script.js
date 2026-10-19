@@ -644,11 +644,16 @@ async function loadHomepageFeaturedNews() {
 
         const latestNews = newsList[newsList.length - 1];
 
-        imageEl.src = latestNews.resim || "camlıkoy.jpeg";
+        imageEl.src = String(latestNews.resim || "camlıkoy.jpeg").split(/[\r\n,|]+/)[0].trim();
         imageEl.alt = latestNews.baslik;
         dateEl.textContent = latestNews.tarih || "Son haber";
         titleEl.textContent = latestNews.baslik;
-        excerptEl.textContent = latestNews.ozet || "Haber detayı için haberler sayfasını ziyaret edin.";
+        const excerpt = String(latestNews.ozet || "Haber detayı için haberler sayfasını ziyaret edin.")
+          .replace(/\s+/g, " ")
+          .trim();
+        excerptEl.textContent = excerpt.length > 220
+          ? `${excerpt.slice(0, 217).trimEnd()}...`
+          : excerpt;
         cardEl.setAttribute("data-news-title", latestNews.baslik);
     } catch (e) {
         console.error("Ana sayfa haberi yüklenemedi:", e);
